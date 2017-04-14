@@ -1,11 +1,11 @@
 Notes For Dev
 
 
-* Seperate Models and Routes sections
+Seperate Models and Routes sections
 
 
 
-* Users
+Users
  - Admin
  - Joined
  - make id a uuid
