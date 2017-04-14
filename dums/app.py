@@ -24,6 +24,9 @@ app.config.from_object('config')
 db = SQLAlchemy(app)
 
 
+
+# ----- Models ------ 
+
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(120), unique=True)
@@ -70,8 +73,10 @@ class User(db.Model):
 
 
 db.create_all()
+#====================================
 
 
+# ------- Logic -----------
 
 def create_token(user):
     payload = {
@@ -112,9 +117,9 @@ def login_required(f):
         return f(*args, **kwargs)
 
     return decorated_function
+# =====================
 
-
-# Routes
+# --------- Routes ----------------
 
 @app.route('/')
 def index():
