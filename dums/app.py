@@ -93,7 +93,7 @@ def parse_token(req):
     return jwt.decode(token, app.config['TOKEN_SECRET'])
 
 
-def login_required(f):
+def token(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
         if not request.headers.get('Authorization'):
@@ -125,9 +125,8 @@ def login_required(f):
 def index():
     return send_file(os.path.join(client_path, 'index.html'))
 
-
+@token
 @app.route('/api/me')
-@login_required
 def me():
     user = User.query.filter_by(id=g.user_id).first()
     return jsonify(user.to_json())
